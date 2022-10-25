@@ -1,10 +1,10 @@
 :root {
 
-    --navColor: #FAF6F5;
+    --navColor: #202025;
     --btmBorder: #8333e9;
-    --menuColor: #F7F8F3;
-    --rightPanel: #f8f3f0;
-    --textColor: rgb(0, 0, 0);
+    --menuColor: #2b2b2e;
+    --rightPanel: #1a1a1b;
+    --textColor: #fff;
 }
 
 * {
@@ -16,24 +16,12 @@ body {
     padding: 0;
 }
 
-body .dark{
-
+.content.dark{
     --navColor: #202025;
     --btmBorder: #8333e9;
     --menuColor: #2b2b2e;
     --rightPanel: #1a1a1b;
     --textColor: #fff;
-
-}
-
-body .light{
-
-    --navColor: #FAF6F5;
-    --btmBorder: #8333e9;
-    --menuColor: #F7F8F3;
-    --rightPanel: #f8f3f0;
-    --textColor: rgb(0, 0, 0);
-    
 }
 
 .content {
@@ -73,7 +61,7 @@ body .light{
     display: flex;
 }
 
-label {
+.darkmode-toggle-label {
     width: 150px;
     height: 40px;
     position: relative;
@@ -86,7 +74,7 @@ label {
     align-items: center;
 }
 
-label:after {
+.darkmode-toggle-label:after {
     content: "";
     width: 30px;
     height: 30px;
@@ -104,22 +92,22 @@ input {
     visibility: hidden;
 }
 
-input:checked+label {
+input:checked+.darkmode-toggle-label {
     background: #2e2d2d;
 }
 
-input:checked+label:after {
+input:checked+.darkmode-toggle-label:after {
     left: 140px;
     transform: translateX(-100%);
     background: linear-gradient(180deg, #777, #333131);
 }
 
-label,
-label:after {
+.darkmode-toggle-label,
+.darkmode-toggle-label:after {
     transition: 0.3s
 }
 
-label:active:after {
+.darkmode-toggle-label:active:after {
     width: 60px;
 }
 

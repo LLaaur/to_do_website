@@ -148,6 +148,27 @@ input:checked+.darkmode-toggle-label:after {
     font-size: 1.3rem;
 }
 
+.today,
+.tomorrow,
+.this-week{
+    padding: 0.4rem;
+}
+
+.today:hover,
+.tomorrow:hover,
+.this-week:hover,
+.add-project:hover{
+    cursor: pointer;
+    color: black;
+    width: 70%;
+    border-radius: 10px;
+    background-color: gold;
+}
+
+.add-project{
+    padding: 0.4rem;
+}
+
 .home, 
 .projects{
     border-bottom: 2px solid black;
@@ -193,6 +214,7 @@ input:checked+.darkmode-toggle-label:after {
     padding: 1rem;
     display: flex;
     flex-direction: column;
+    align-items: center;
 }
 
 .current-task {
@@ -244,4 +266,8 @@ footer {
     100% {
         transform: rotate(359deg);
     }
+}
+
+.minimize{ 
+    display: none;
 }

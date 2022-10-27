@@ -5,6 +5,11 @@ const rightPanel = document.querySelector('.right-panel');
 
 const menuBtn = document.querySelector('.menu-button');
 
+const addProjectBtn = document.querySelector('.add-project');
+const addProjectpopup = document.getElementById('add-project-popup');
+
+const addCancelProject = document.querySelector('.add-or-cancel-buttons');
+
 checkbox.addEventListener('input', () => {
     if (checkbox.checked) {
       nav.style.backgroundColor = '#202025';
@@ -28,4 +33,9 @@ checkbox.addEventListener('input', () => {
 menuBtn.addEventListener('click', () => {
   sideMenu.classList.toggle('minimize');
   rightPanel.style.width = '100%';
+})
+
+addProjectBtn.addEventListener('click', () => {
+  addProjectpopup.style.display = 'block';
+  addCancelProject.style.display = 'flex';
 })

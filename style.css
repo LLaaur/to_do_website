@@ -271,3 +271,43 @@ footer {
 .minimize{ 
     display: none;
 }
+
+.project-popup{
+    display: flex;
+    justify-content: center;
+}
+
+.add-project-popup{
+    margin-top: 1rem;
+    width: 60%;
+    height: 25px;
+    text-align: center;
+    border-radius: 10px;
+    border: 2px solid #8333E9;
+    visibility: visible;
+    padding: 0.4rem;
+    font-size: 1rem;
+    display: none;
+}
+
+.add-or-cancel-buttons{
+	display: flex;
+	justify-content: center;
+	column-gap: 2rem;
+    display: none;
+}
+
+.add-project-button,
+.cancel-project-button{
+    margin-top: 1rem;
+	width: 30%;
+	height: 30px;
+    background-color: #8333E9;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    padding: 1rem;
+    border-radius: 5px;
+}

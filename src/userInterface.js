@@ -14,6 +14,11 @@ function Interface() {
 
     const cancelProjectBtn = document.querySelector('.cancel-project-button');
 
+    const createProjectBtn = document.querySelector('.add-project-button');
+
+    const projectsList = document.querySelector('.projects-list');
+    // const project = document.querySelector('.project');
+
     checkbox.addEventListener('input', () => {
         if (checkbox.checked) {
             nav.style.backgroundColor = '#202025';
@@ -48,6 +53,33 @@ function Interface() {
     cancelProjectBtn.addEventListener('click', () => {
         addProjectpopup.style.display = 'none';
         addCancelProject.style.display = 'none';
+    })
+
+    function clearForm(){
+        addProjectpopup.value = '';
+    }
+
+
+    createProjectBtn.addEventListener('click', () => {
+
+        projectsList.style.display = 'flex';
+
+        const project = document.createElement('div');
+        project.classList.add('project');
+
+        project.innerHTML += `<i class="fa-sharp fa-solid fa-check"></i>` ;
+
+        const projectName = document.createElement('h3');
+
+        projectName.textContent = addProjectpopup.value;
+
+        project.appendChild(projectName);
+
+
+        projectsList.appendChild(project);
+
+        clearForm();
+
     })
 
 }

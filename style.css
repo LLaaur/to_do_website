@@ -152,7 +152,8 @@ input:checked+.darkmode-toggle-label:after {
 
 .today,
 .tomorrow,
-.this-week{
+.this-week,
+.inbox{
     padding: 0.4rem;
 }
 
@@ -160,7 +161,8 @@ input:checked+.darkmode-toggle-label:after {
 .tomorrow:hover,
 .this-week:hover,
 .add-project:hover,
-.project:hover{
+.project:hover,
+.inbox:hover{
     cursor: pointer;
     color: black;
     border-radius: 10px;
@@ -191,7 +193,8 @@ input:checked+.darkmode-toggle-label:after {
 
 .today,
 .tomorrow,
-.this-week{
+.this-week,
+.inbox{
     display: flex;
     align-items: center;
     column-gap: 0.5rem;
@@ -228,6 +231,11 @@ input:checked+.darkmode-toggle-label:after {
     display: flex;
     justify-content: center;
     align-items: center;
+    font-size: 2rem;
+}
+
+.current-task h2{
+    font-size: 1.5rem;
 }
 
 .footer {

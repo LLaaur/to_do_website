@@ -18,8 +18,7 @@ function Interface() {
 
 
     const projectsList = document.querySelector('.projects-list');
-    
-    
+
 
     checkbox.addEventListener('input', () => {
         if (checkbox.checked) {
@@ -101,7 +100,13 @@ function Interface() {
 
 
         clearForm();
+
+        const rightPanelTask = document.querySelector('.current-task');
         
+        project.addEventListener('click', (e) => {
+            rightPanelTask.textContent = e.currentTarget.textContent;
+        })
+
     })
 
 }

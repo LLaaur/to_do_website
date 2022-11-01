@@ -8,7 +8,6 @@ function Interface() {
     const menuBtn = document.querySelector('.menu-button');
 
     const addProjectBtn = document.querySelector('.add-project');
-    const projectPopup = document.getElementById('project-popup');
     const projectNameInput = document.getElementById('add-project-popup');
 
     const addCancelProject = document.querySelector('.add-or-cancel-buttons');
@@ -16,6 +15,7 @@ function Interface() {
     const cancelProjectBtn = document.querySelector('.cancel-project-button');
 
     const createProjectBtn = document.querySelector('.add-project-button');
+
 
     const projectsList = document.querySelector('.projects-list');
     
@@ -66,6 +66,10 @@ function Interface() {
 
 
     createProjectBtn.addEventListener('click', () => {
+    
+        const removeProjectBtn = document.createElement('i');
+        removeProjectBtn.classList.add('fa-solid');
+        removeProjectBtn.classList.add('fa-xmark');
 
         projectsList.style.display = 'flex';
 
@@ -84,15 +88,20 @@ function Interface() {
             projectName.textContent = projectNameInput.value;
         }
 
-        project.innerHTML += `<i class="fa-solid fa-xmark"></i>`;
-
         project.appendChild(projectName);
 
+        project.appendChild(removeProjectBtn);
 
         projectsList.appendChild(project);
 
-        clearForm();
 
+        removeProjectBtn.addEventListener('click', (e) => {
+            projectsList.removeChild(e.currentTarget.parentNode);
+        })
+
+
+        clearForm();
+        
     })
 
 }

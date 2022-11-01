@@ -141,6 +141,8 @@ input:checked+.darkmode-toggle-label:after {
     width: 20%;
     padding: 1rem;
     border-right: 3px solid #8333E9;
+    overflow: scroll;
+    height: 100%;
 }
 
 .side-menu h2{
@@ -320,14 +322,19 @@ footer {
     row-gap: 0.5rem;
 }
 
-.fa-sharp{
+.fa-xmark{
+    font-size: 1rem;
+}
+
+.fa-check-double{
     font-size: 1rem;
 }
 
 .project{
-    width: 40%;
+    padding: 0.5rem;
+    width: 80%;
     display: flex;
     align-items: center;
     align-content: flex-end;
-    justify-content: space-around;
+    justify-content: space-between;
 }

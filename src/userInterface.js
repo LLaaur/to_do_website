@@ -8,7 +8,8 @@ function Interface() {
     const menuBtn = document.querySelector('.menu-button');
 
     const addProjectBtn = document.querySelector('.add-project');
-    const addProjectpopup = document.getElementById('add-project-popup');
+    const projectPopup = document.getElementById('project-popup');
+    const projectNameInput = document.getElementById('add-project-popup');
 
     const addCancelProject = document.querySelector('.add-or-cancel-buttons');
 
@@ -17,7 +18,8 @@ function Interface() {
     const createProjectBtn = document.querySelector('.add-project-button');
 
     const projectsList = document.querySelector('.projects-list');
-    // const project = document.querySelector('.project');
+    
+    
 
     checkbox.addEventListener('input', () => {
         if (checkbox.checked) {
@@ -45,18 +47,21 @@ function Interface() {
     })
 
     addProjectBtn.addEventListener('click', () => {
-        addProjectpopup.style.display = 'block';
-        addProjectpopup.value = '';
+        projectNameInput.style.display = 'block';
+        projectNameInput.value = '';
         addCancelProject.style.display = 'flex';
     })
 
     cancelProjectBtn.addEventListener('click', () => {
-        addProjectpopup.style.display = 'none';
+        projectNameInput.style.display = 'none';
         addCancelProject.style.display = 'none';
+        
     })
 
     function clearForm(){
-        addProjectpopup.value = '';
+        projectNameInput.value = '';
+        projectNameInput.style.display = 'none';
+        addCancelProject.style.display = 'none';
     }
 
 
@@ -67,11 +72,19 @@ function Interface() {
         const project = document.createElement('div');
         project.classList.add('project');
 
-        project.innerHTML += `<i class="fa-sharp fa-solid fa-check"></i>` ;
+        project.innerHTML += `<i class="fa-solid fa-check-double"></i>` ;
 
         const projectName = document.createElement('h3');
 
-        projectName.textContent = addProjectpopup.value;
+        if (projectNameInput.value == ''){
+            alert('Projects must have a name');
+            return
+        }
+        else{
+            projectName.textContent = projectNameInput.value;
+        }
+
+        project.innerHTML += `<i class="fa-solid fa-xmark"></i>`;
 
         project.appendChild(projectName);
 

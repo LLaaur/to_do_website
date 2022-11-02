@@ -2,8 +2,11 @@ function Interface() {
 
     const checkbox = document.getElementById('darkmode-toggle');
     const nav = document.querySelector('.navbar');
+
     const sideMenu = document.querySelector('.side-menu');
+
     const rightPanel = document.querySelector('.right-panel');
+    const rightPanelTask = document.querySelector('.current-task');
 
     const menuBtn = document.querySelector('.menu-button');
 
@@ -18,6 +21,8 @@ function Interface() {
 
 
     const projectsList = document.querySelector('.projects-list');
+
+    const taskList = document.querySelector('.task-list')
 
 
     checkbox.addEventListener('input', () => {
@@ -65,11 +70,11 @@ function Interface() {
 
 
     createProjectBtn.addEventListener('click', () => {
-    
+        
         const removeProjectBtn = document.createElement('i');
         removeProjectBtn.classList.add('fa-solid');
         removeProjectBtn.classList.add('fa-xmark');
-
+        
         projectsList.style.display = 'flex';
 
         const project = document.createElement('div');
@@ -93,18 +98,16 @@ function Interface() {
 
         projectsList.appendChild(project);
 
+        clearForm();
 
         removeProjectBtn.addEventListener('click', (e) => {
             projectsList.removeChild(e.currentTarget.parentNode);
+            project.textContent = '';
         })
 
-
-        clearForm();
-
-        const rightPanelTask = document.querySelector('.current-task');
-        
         project.addEventListener('click', (e) => {
             rightPanelTask.textContent = e.currentTarget.textContent;
+            taskList.style.display = 'flex';
         })
 
     })

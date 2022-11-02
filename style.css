@@ -355,6 +355,7 @@ footer {
 .task-list{
     display: none;
     padding-top: 3rem;
+    flex-direction: column;
 }
 
 .add-task{
@@ -364,4 +365,38 @@ footer {
     align-items: center;
     justify-content: start;
     padding: 1rem;
+}
+
+.add-task-popup{
+    border: 2px solid black;
+    border-radius: 5px;
+    width: 70rem;
+    height: 3rem;
+    font-size: 2rem;
+    padding: 0.5rem;
+    text-align: center;
+    visibility: visible;
+    display: none;
+}
+
+.add-or-cancel-task-buttons{
+    display: flex;
+	justify-content: center;
+	column-gap: 2rem;
+    display: none;
+}
+
+.add-task-button,
+.cancel-task-button{
+    margin-top: 1rem;
+	width: 30%;
+	height: 40px;
+    background-color: #8333E9;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    padding: 1rem;
+    border-radius: 5px;
 }

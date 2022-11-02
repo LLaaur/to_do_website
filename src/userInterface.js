@@ -22,8 +22,15 @@ function Interface() {
 
     const projectsList = document.querySelector('.projects-list');
 
-    const taskList = document.querySelector('.task-list')
+    const taskList = document.querySelector('.task-list');
 
+    const addTask = document.querySelector('.add-task');
+
+    const addTaskPopup = document.getElementById('add-task-popup');
+
+    const addCancelTaskButtons = document.querySelector('.add-or-cancel-task-buttons')
+
+    const cancelTaskButton = document.querySelector('.cancel-task-button');
 
     checkbox.addEventListener('input', () => {
         if (checkbox.checked) {
@@ -110,6 +117,19 @@ function Interface() {
             taskList.style.display = 'flex';
         })
 
+    })
+
+    addTask.addEventListener('click', () => {
+        addTaskPopup.style.display = 'block'
+        addTaskPopup.value = ''
+        addTask.style.display = 'none'
+        addCancelTaskButtons.style.display = 'flex';
+    })
+
+    cancelTaskButton.addEventListener('click', () => {
+        addTaskPopup.style.display = 'none';
+        addCancelTaskButtons.style.display = 'none';
+        addTask.style.display = 'flex'
     })
 
 }

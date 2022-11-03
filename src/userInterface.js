@@ -32,6 +32,8 @@ function Interface() {
 
     const cancelTaskButton = document.querySelector('.cancel-task-button');
 
+    const addTaskButton = document.querySelector('.add-task-button');
+
     checkbox.addEventListener('input', () => {
         if (checkbox.checked) {
             nav.style.backgroundColor = '#202025';
@@ -130,6 +132,30 @@ function Interface() {
         addTaskPopup.style.display = 'none';
         addCancelTaskButtons.style.display = 'none';
         addTask.style.display = 'flex'
+    })
+
+    addTaskButton.addEventListener('click', () => {
+
+        taskList.style.display = 'flex';
+
+        const task = document.createElement('div');
+
+        task.innerHTML += ` <div class="task">
+
+                                    <div class="left-side">
+
+                                        <i class="fa-regular fa-circle" id="circle"></i>
+
+                                        <h3>${addTaskPopup.value}</h3>
+
+                                    </div>
+
+                                <div class="right-side">No date</div>
+
+                            </div>`
+
+        taskList.appendChild(task);
+        
     })
 
 }

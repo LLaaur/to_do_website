@@ -163,7 +163,8 @@ input:checked+.darkmode-toggle-label:after {
 .add-project:hover,
 .project:hover,
 .inbox:hover,
-.add-task:hover{
+.add-task:hover,
+.task:hover{
     cursor: pointer;
     color: black;
     border-radius: 10px;
@@ -399,4 +400,29 @@ footer {
     cursor: pointer;
     padding: 1rem;
     border-radius: 5px;
+}
+
+
+.task{
+    padding: 1rem;
+    width: 60rem;
+    display: flex;
+    align-items: center;
+    font-size: 1.5rem;
+    justify-content: space-between;
+}
+
+.left-side{
+    display: flex;
+    align-items: center;
+    column-gap: 1rem;
+    justify-content: flex-end;
+}
+
+.fa-regular.fa-circle{
+    font-size: 2rem;
+}
+
+.fa-regular.fa-circle:hover{
+    cursor: pointer;
 }

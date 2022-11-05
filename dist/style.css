@@ -16,7 +16,7 @@ body {
     padding: 0;
 }
 
-.content.dark{
+body.dark{
     --navColor: #202025;
     --btmBorder: #8333e9;
     --menuColor: #2b2b2e;
@@ -347,6 +347,7 @@ footer {
     align-items: center;
     align-content: flex-end;
     justify-content: space-between;
+    text-align: center;
 }
 
 .project h3{

@@ -38,7 +38,43 @@ function Interface() {
         rightPanel.style.width = '100%';
     })
 
+    const rightPanelTask = document.querySelector('.current-task');
+
+    const addTask = document.querySelector('.add-task');
+
+    const task = document.createElement('div');
+
+    const inbox = document.querySelector('.inbox');
+    const today = document.querySelector('.today');
+    const tomorrow = document.querySelector('.tomorrow');
+    const nextWeek = document.querySelector('.this-week');
+
+    inbox.addEventListener('click', () => {
+        rightPanelTask.textContent = inbox.textContent
+        addTask.style.display = 'flex';
+        task.style.display = 'flex'
+    })
+
+    today.addEventListener('click', () => {
+        rightPanelTask.textContent = today.textContent
+        addTask.style.display = 'none';
+        task.style.display = 'none'
+    })
+
+    tomorrow.addEventListener('click', () => {
+        rightPanelTask.textContent = tomorrow.textContent
+        addTask.style.display = 'none';
+        task.style.display = 'none'
+    })
+
+    nextWeek.addEventListener('click', () => {
+        rightPanelTask.textContent = nextWeek.textContent
+        addTask.style.display = 'none';
+        task.style.display = 'none'
+    })
+
     // display text field on add task click
+
     const addProjectBtn = document.querySelector('.add-project');
     const addCancelProject = document.querySelector('.add-or-cancel-buttons');
     const projectNameInput = document.getElementById('add-project-popup');
@@ -67,6 +103,7 @@ function Interface() {
     // create project on add project click, display the name of the project in the right panel
     const taskList = document.querySelector('.task-list');
     const createProjectBtn = document.querySelector('.add-project-button');
+
     createProjectBtn.addEventListener('click', () => {
 
         const projectsList = document.querySelector('.projects-list');
@@ -107,7 +144,6 @@ function Interface() {
 
 
         project.addEventListener('click', (e) => {
-            const rightPanelTask = document.querySelector('.current-task');
             rightPanelTask.textContent = e.currentTarget.textContent;
             taskList.style.display = 'flex';
         })
@@ -116,9 +152,9 @@ function Interface() {
 
 
     // display text field on add task click
-    const addTask = document.querySelector('.add-task');
     const addTaskPopup = document.getElementById('add-task-popup');
-    const addCancelTaskButtons = document.querySelector('.add-or-cancel-task-buttons')
+    const addCancelTaskButtons = document.querySelector('.add-or-cancel-task-buttons');
+
     addTask.addEventListener('click', () => {
         addTaskPopup.style.display = 'block'
         addTaskPopup.value = ''
@@ -127,6 +163,7 @@ function Interface() {
     })
 
     const cancelTaskButton = document.querySelector('.cancel-task-button');
+
     cancelTaskButton.addEventListener('click', () => {
         addTaskPopup.style.display = 'none';
         addCancelTaskButtons.style.display = 'none';
@@ -136,27 +173,44 @@ function Interface() {
 
     // create task and display it in the task list after clicking the add button
     const addTaskButton = document.querySelector('.add-task-button');
+    const tasks = document.querySelector('.tasks');
+
+
     addTaskButton.addEventListener('click', () => {
 
-        taskList.style.display = 'flex';
 
-        const task = document.createElement('div');
+        let currentTask = document.createElement('div');
 
-        task.innerHTML += ` <div class="task">
+        let leftSide = document.createElement('div');
 
-                                    <div class="left-side">
+        let taskCheck = document.createElement('i');
+        taskCheck.classList.add('fa-regular');
+        taskCheck.classList.add('fa-circle');
 
-                                        <i class="fa-regular fa-circle" id="circle"></i>
+        let taskName = document.createElement('h3');
+        taskName.textContent = addTaskPopup.value;
 
-                                        <h3>${addTaskPopup.value}</h3>
+        let taskDate = document.createElement('h3');
+        taskDate.textContent = 'No date';
 
-                                    </div>
+        leftSide.appendChild(taskCheck);
+        leftSide.appendChild(taskName);
+        leftSide.classList.add('left-side');
 
-                                <div class="right-side">No date</div>
+        currentTask.appendChild(leftSide);
+        currentTask.appendChild(taskDate);
+        
+        currentTask.classList.add('task');
 
-                            </div>`
+        tasks.style.display = 'flex';
 
-        taskList.appendChild(task);
+        tasks.appendChild(currentTask);
+
+
+        taskCheck.addEventListener('click', (e) => {
+            const taskToBeRemoved = document.querySelector('.task')
+            taskToBeRemoved.remove()
+        })
         
     })
 

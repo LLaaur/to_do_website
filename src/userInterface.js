@@ -188,7 +188,13 @@ function Interface() {
         taskCheck.classList.add('fa-circle');
 
         let taskName = document.createElement('h3');
-        taskName.textContent = addTaskPopup.value;
+        if (addTaskPopup.value == ''){
+            alert('Tasks must have a name')
+            return
+        }
+        else{
+            taskName.textContent = addTaskPopup.value
+        }
 
         let taskDate = document.createElement('h3');
         taskDate.textContent = 'No date';
@@ -208,8 +214,10 @@ function Interface() {
 
 
         taskCheck.addEventListener('click', (e) => {
-            const taskToBeRemoved = document.querySelector('.task')
-            taskToBeRemoved.remove()
+            e.currentTarget.parentNode.style.opacity = '0.6'
+            taskDate.style.opacity = '0.6'
+            e.currentTarget.style.background = 'green'
+            e.currentTarget.style.borderRadius = '50%'
         })
         
     })

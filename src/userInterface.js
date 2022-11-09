@@ -1,5 +1,4 @@
 function Interface() {
-    
 
     // toggle light/dark theme on checkbox click
     const checkbox = document.getElementById('darkmode-toggle');
@@ -196,15 +195,25 @@ function Interface() {
             taskName.textContent = addTaskPopup.value
         }
 
+        let rightSide = document.createElement('div');
+
         let taskDate = document.createElement('h3');
         taskDate.textContent = 'No date';
+
+        let removeTaskBtn = document.createElement('i');
+        removeTaskBtn.classList.add('fa-solid');
+        removeTaskBtn.classList.add('fa-xmark');
 
         leftSide.appendChild(taskCheck);
         leftSide.appendChild(taskName);
         leftSide.classList.add('left-side');
 
+        rightSide.appendChild(taskDate);
+        rightSide.appendChild(removeTaskBtn);
+        rightSide.classList.add('right-side');
+
         currentTask.appendChild(leftSide);
-        currentTask.appendChild(taskDate);
+        currentTask.appendChild(rightSide);
         
         currentTask.classList.add('task');
 
@@ -218,6 +227,10 @@ function Interface() {
             taskDate.style.opacity = '0.6'
             e.currentTarget.style.background = 'green'
             e.currentTarget.style.borderRadius = '50%'
+        })
+
+        removeTaskBtn.addEventListener('click', () => {
+            tasks.removeChild(currentTask);
         })
         
     })

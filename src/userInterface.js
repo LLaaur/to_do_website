@@ -1,3 +1,5 @@
+import { format, parse, parseISO, set } from "date-fns";
+
 function Interface() {
 
     // toggle light/dark theme on checkbox click
@@ -178,15 +180,15 @@ function Interface() {
     addTaskButton.addEventListener('click', () => {
 
 
-        let currentTask = document.createElement('div');
+        const currentTask = document.createElement('div');
 
-        let leftSide = document.createElement('div');
+        const leftSide = document.createElement('div');
 
-        let taskCheck = document.createElement('i');
+        const taskCheck = document.createElement('i');
         taskCheck.classList.add('fa-regular');
         taskCheck.classList.add('fa-circle');
 
-        let taskName = document.createElement('h3');
+        const taskName = document.createElement('h3');
         if (addTaskPopup.value == ''){
             alert('Tasks must have a name')
             return
@@ -195,12 +197,12 @@ function Interface() {
             taskName.textContent = addTaskPopup.value
         }
 
-        let rightSide = document.createElement('div');
+        const rightSide = document.createElement('div');
 
-        let taskDate = document.createElement('h3');
+        const taskDate = document.createElement('h3');
         taskDate.textContent = 'No date';
 
-        let removeTaskBtn = document.createElement('i');
+        const removeTaskBtn = document.createElement('i');
         removeTaskBtn.classList.add('fa-solid');
         removeTaskBtn.classList.add('fa-xmark');
 
@@ -232,7 +234,21 @@ function Interface() {
         removeTaskBtn.addEventListener('click', () => {
             tasks.removeChild(currentTask);
         })
-        
+
+        const setDate = document.createElement('input');
+        setDate.setAttribute('type', 'date');
+
+        taskDate.addEventListener('click', () => {
+
+            rightSide.appendChild(setDate);
+
+            taskDate.style.display = 'none'
+
+            setDate.classList.add('set-date')
+
+            rightSide.style.flexDirection = 'column'
+        })
+
     })
 
 }

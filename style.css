@@ -448,6 +448,7 @@ footer {
 }
 
 .set-date{
+    position: absolute;
     border: none;
     background: white;
     border-radius: 15px;
@@ -456,5 +457,8 @@ footer {
     font-size: 1rem;
     font-family: Poppins;
     display: flex;
-    flex-direction: row-reverse;
+    flex-direction: column;
+    height: 200px;
+    overflow: auto;
+    padding: 1rem;
 }

@@ -149,7 +149,8 @@ function Interface() {
             taskList.style.display = 'flex';
         })
 
-    })
+   })
+
 
 
     // display text field on add task click
@@ -235,19 +236,63 @@ function Interface() {
             tasks.removeChild(currentTask);
         })
 
-        const setDate = document.createElement('input');
-        setDate.setAttribute('type', 'date');
+        const setDate = document.createElement('div');
 
-        taskDate.addEventListener('click', () => {
+        const todayDate = document.createElement('h3');
+        todayDate.textContent = 'Today'
+
+        const tomorrowDate = document.createElement('h3');
+        tomorrowDate.textContent = 'Tomorrow';
+
+        const nextWeekDate = document.createElement('h3');
+        nextWeekDate.textContent = 'Next week'
+
+        const noDueDate = document.createElement('h3');
+        noDueDate.textContent = 'No due date';
+
+        setDate.appendChild(todayDate);
+        setDate.appendChild(tomorrowDate);
+        setDate.appendChild(nextWeekDate);
+        setDate.appendChild(noDueDate);
+
+        taskDate.addEventListener('click', (e) => {
 
             rightSide.appendChild(setDate);
 
-            taskDate.style.display = 'none'
-
             setDate.classList.add('set-date')
 
-            rightSide.style.flexDirection = 'column'
+            rightSide.style.flexDirection = 'column'    
+
+            todayDate.addEventListener('click', () => {
+                taskDate.textContent = 'Today'
+                setDate.style.display = 'none'
+                rightSide.style.flexDirection = 'column-reverse' 
+                taskDate.style.pointerEvents = 'none'
+            })
+
+            tomorrowDate.addEventListener('click', () => {
+                taskDate.textContent = 'Tomorrow'
+                setDate.style.display = 'none'
+                rightSide.style.flexDirection = 'column-reverse' 
+                taskDate.style.pointerEvents = 'none'
+            })
+
+            nextWeekDate.addEventListener('click', () => {
+                taskDate.textContent = 'Next week'
+                setDate.style.display = 'none'
+                rightSide.style.flexDirection = 'column-reverse' 
+                taskDate.style.pointerEvents = 'none'
+            })
+
+            noDueDate.addEventListener('click', () => {
+                taskDate.textContent = 'No due date'
+                setDate.style.display = 'none'
+                rightSide.style.flexDirection = 'column-reverse' 
+                taskDate.style.pointerEvents = 'none'
+            })
+
         })
+
 
     })
 

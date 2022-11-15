@@ -1,4 +1,5 @@
 import { format, parse, parseISO, set } from "date-fns";
+import ToDoList from "./toDoList";
 
 function Interface() {
 
@@ -33,11 +34,21 @@ function Interface() {
 
     // minimize side-menu on hamburger menu button click
 
+
     const menuBtn = document.querySelector('.menu-button');
     menuBtn.addEventListener('click', () => {
         sideMenu.classList.toggle('minimize');
         rightPanel.style.width = '100%';
     })
+
+    if (window.innerWidth <= 600){
+        menuBtn.addEventListener('Touch', () => {
+            sideMenu.classList.toggle('minimize')
+            rightPanel.style.display = 'flex';
+            rightPanel.style.visibility = 'visible';
+            rightPanel.style.width = '100%';
+        })
+    }
 
     const rightPanelTask = document.querySelector('.current-task');
 
@@ -146,6 +157,8 @@ function Interface() {
 
         project.addEventListener('click', (e) => {
             rightPanelTask.textContent = e.currentTarget.textContent;
+            addTask.style.display = 'flex'
+            addTaskPopup.value = ''
             taskList.style.display = 'flex';
         })
 

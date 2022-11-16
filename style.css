@@ -489,11 +489,11 @@ body.dark{
 }
 
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 767px) {
 
     .content{
         width: 100%;
-        height: 100vh;
+        height: 100%;
     }
 
     .navbar{
@@ -581,12 +581,25 @@ body.dark{
 
     .content{
         width: 100%;
-        height: 100vh;
+        height: 100%;
     }
 
     .navbar{
+        width: 100%;
         height: 12%;
         column-gap: 0;
+    }
+
+    .project-popup{
+        justify-content: flex-start;
+    }
+
+    .add-or-cancel-buttons{
+        width: 65%;
+    }
+
+    .footer{
+        width: 100%;
     }
 
     footer{
@@ -629,20 +642,46 @@ body.dark{
         width: 45%;
     }
 
-    .task-list{
-        width: 100%;
+    .middle-section{
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
     }
 
-    .add-task-popup{
+    .task-list{
         width: 95%;
     }
 
+    .right-panel{
+        width: 100%;
+        height: 100vh;
+        display: flex;
+        height: 100%;
+        align-items: flex-start;
+        background-color: #F7F8F3;
+    }
+
+    .add-task{
+        width: 95%;
+    }
+
+    .add-task-popup{
+        width: 65%;
+        height: 60%;
+        height: 1rem;
+        font-size: 1rem;
+    }
+
+    .add-or-cancel-task-buttons{
+        width: 70%;
+    }
+
     .add-task-button{
-        width: 40%;
+        width: 90%;
     }
 
     .cancel-task-button{
-        width: 40%;
+        width: 90%;
     }
 
     .tasks{
@@ -656,6 +695,10 @@ body.dark{
     .set-date{
         height: 100px;
         font-size: 0.8rem;
+    }
+
+    .current-task{
+        width: 85%;
     }
 
 }

@@ -1,4 +1,5 @@
 import { format, parse, parseISO, set } from "date-fns";
+import { tr } from "date-fns/locale";
 import ToDoList from "./toDoList";
 
 function Interface() {
@@ -41,14 +42,16 @@ function Interface() {
         rightPanel.style.width = '100%';
     })
 
-    if (window.innerWidth <= 600){
-        menuBtn.addEventListener('Touch', () => {
-            sideMenu.classList.toggle('minimize')
-            rightPanel.style.display = 'flex';
-            rightPanel.style.visibility = 'visible';
-            rightPanel.style.width = '100%';
-        })
-    }
+
+    // if (window.innerWidth <= 600){
+    //     rightPanel.style.width = '0'
+    //     menuBtn.addEventListener('Touch', () => {
+    //         rightPanel.style.display = 'flex'
+    //         sideMenu.classList.toggle('minimize')
+    //         sideMenu.style.width = '100%'
+    //         rightPanel.style.visibility = 'visible'
+    //     })
+    // }
 
     const rightPanelTask = document.querySelector('.current-task');
 

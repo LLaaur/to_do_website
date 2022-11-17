@@ -43,16 +43,6 @@ function Interface() {
     })
 
 
-    // if (window.innerWidth <= 600){
-    //     rightPanel.style.width = '0'
-    //     menuBtn.addEventListener('Touch', () => {
-    //         rightPanel.style.display = 'flex'
-    //         sideMenu.classList.toggle('minimize')
-    //         sideMenu.style.width = '100%'
-    //         rightPanel.style.visibility = 'visible'
-    //     })
-    // }
-
     const rightPanelTask = document.querySelector('.current-task');
 
     const addTask = document.querySelector('.add-task');
@@ -88,7 +78,9 @@ function Interface() {
         task.style.display = 'none'
     })
 
+
     // display text field on add task click
+
 
     const addProjectBtn = document.querySelector('.add-project');
     const addCancelProject = document.querySelector('.add-or-cancel-buttons');
@@ -115,11 +107,16 @@ function Interface() {
     }
 
 
+
+    let myProjectsList = [];
+
     // create project on add project click, display the name of the project in the right panel
     const taskList = document.querySelector('.task-list');
     const createProjectBtn = document.querySelector('.add-project-button');
 
     createProjectBtn.addEventListener('click', () => {
+
+
 
         const projectsList = document.querySelector('.projects-list');
         
@@ -165,7 +162,26 @@ function Interface() {
             taskList.style.display = 'flex';
         })
 
+        const newProject = CreateProject(projectName.textContent);
+        myProjectsList.push(newProject);
+
+        const id = myProjectsList.indexOf(newProject);
+        console.log(id)
+
+        console.log(myProjectsList);
+
+
    })
+
+   const CreateProject = (projectName) => {
+       const tasksList = [];
+       const taskNum = tasksList.length;
+       return {
+           tasksList,
+           taskNum,
+           projectName
+       }
+   }
 
 
 

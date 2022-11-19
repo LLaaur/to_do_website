@@ -1,5 +1,5 @@
 import { format, parse, parseISO, set } from "date-fns";
-import { tr } from "date-fns/locale";
+import { id, tr } from "date-fns/locale";
 import ToDoList from "./toDoList";
 
 function Interface() {
@@ -96,48 +96,81 @@ function Interface() {
     cancelProjectBtn.addEventListener('click', () => {
         projectNameInput.style.display = 'none';
         addCancelProject.style.display = 'none';
-        
+
     })
 
     // clear the value inserted in the add project text field
-    function clearForm(){
+    function clearForm() {
         projectNameInput.value = '';
         projectNameInput.style.display = 'none';
         addCancelProject.style.display = 'none';
     }
 
 
-
     let myProjectsList = [];
+        myProjectsList = localStorage.getItem('listOfProjects');
+        myProjectsList = JSON.parse(myProjectsList || JSON.stringify(defaultProjects));
+
 
     // create project on add project click, display the name of the project in the right panel
     const taskList = document.querySelector('.task-list');
+
     const createProjectBtn = document.querySelector('.add-project-button');
 
-    createProjectBtn.addEventListener('click', () => {
+
+    function saveToLocalStorage() {
+        localStorage.setItem("listOfProjects", JSON.stringify(myProjectsList));
+        localStorage.setItem("currentId", (id).toString());
+    }
 
 
+    const addProjectItem = (title) =>{
+
+        const newProject = CreateProject(title);
+        myProjectsList.push(newProject);
+        saveToLocalStorage()
+
+        const id = myProjectsList.indexOf(newProject);
+        console.log(myProjectsList)
+
+    }
+
+    const generateProjects = (project) => {
+        myProjectsList.forEach(project => displayProject(project))
+    }
+
+
+    const CreateProject = (name) => {
+        let tasksList = [];
+        return {
+            tasksList,
+            name
+        }
+    }
+
+
+    function displayProject(data) {
 
         const projectsList = document.querySelector('.projects-list');
-        
+
         const removeProjectBtn = document.createElement('i');
         removeProjectBtn.classList.add('fa-solid');
         removeProjectBtn.classList.add('fa-xmark');
-        
+
         projectsList.style.display = 'flex';
 
         const project = document.createElement('div');
         project.classList.add('project');
 
-        project.innerHTML += `<i class="fa-solid fa-check-double"></i>` ;
-
         const projectName = document.createElement('h3');
 
-        if (projectNameInput.value == ''){
+        project.innerHTML += `<i class="fa-solid fa-check-double"></i>`
+
+        if (projectNameInput.value == '') {
             alert('Projects must have a name');
             return
         }
-        else{
+        else {
             projectName.textContent = projectNameInput.value;
         }
 
@@ -152,6 +185,11 @@ function Interface() {
         removeProjectBtn.addEventListener('click', (e) => {
             projectsList.removeChild(e.currentTarget.parentNode);
             project.textContent = '';
+
+            let removeThisProject = myProjectsList.findIndex((project) => this.project);
+            myProjectsList.slice(removeThisProject, 1);
+            saveToLocalStorage()
+
         })
 
 
@@ -162,26 +200,12 @@ function Interface() {
             taskList.style.display = 'flex';
         })
 
-        const newProject = CreateProject(projectName.textContent);
-        myProjectsList.push(newProject);
+        addProjectItem(projectName.textContent)        
 
-        const id = myProjectsList.indexOf(newProject);
-        console.log(id)
-
-        console.log(myProjectsList);
+    }
 
 
-   })
-
-   const CreateProject = (projectName) => {
-       const tasksList = [];
-       const taskNum = tasksList.length;
-       return {
-           tasksList,
-           taskNum,
-           projectName
-       }
-   }
+    createProjectBtn.addEventListener('click', displayProject);
 
 
 
@@ -222,11 +246,11 @@ function Interface() {
         taskCheck.classList.add('fa-circle');
 
         const taskName = document.createElement('h3');
-        if (addTaskPopup.value == ''){
+        if (addTaskPopup.value == '') {
             alert('Tasks must have a name')
             return
         }
-        else{
+        else {
             taskName.textContent = addTaskPopup.value
         }
 
@@ -249,7 +273,7 @@ function Interface() {
 
         currentTask.appendChild(leftSide);
         currentTask.appendChild(rightSide);
-        
+
         currentTask.classList.add('task');
 
         tasks.style.display = 'flex';
@@ -293,33 +317,33 @@ function Interface() {
 
             setDate.classList.add('set-date')
 
-            rightSide.style.flexDirection = 'column'    
+            rightSide.style.flexDirection = 'column'
 
             todayDate.addEventListener('click', () => {
                 taskDate.textContent = 'Today'
                 setDate.style.display = 'none'
-                rightSide.style.flexDirection = 'column-reverse' 
+                rightSide.style.flexDirection = 'column-reverse'
                 taskDate.style.pointerEvents = 'none'
             })
 
             tomorrowDate.addEventListener('click', () => {
                 taskDate.textContent = 'Tomorrow'
                 setDate.style.display = 'none'
-                rightSide.style.flexDirection = 'column-reverse' 
+                rightSide.style.flexDirection = 'column-reverse'
                 taskDate.style.pointerEvents = 'none'
             })
 
             nextWeekDate.addEventListener('click', () => {
                 taskDate.textContent = 'Next week'
                 setDate.style.display = 'none'
-                rightSide.style.flexDirection = 'column-reverse' 
+                rightSide.style.flexDirection = 'column-reverse'
                 taskDate.style.pointerEvents = 'none'
             })
 
             noDueDate.addEventListener('click', () => {
                 taskDate.textContent = 'No due date'
                 setDate.style.display = 'none'
-                rightSide.style.flexDirection = 'column-reverse' 
+                rightSide.style.flexDirection = 'column-reverse'
                 taskDate.style.pointerEvents = 'none'
             })
 

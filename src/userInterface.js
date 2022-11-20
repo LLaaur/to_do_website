@@ -1,8 +1,9 @@
 import { format, parse, parseISO, set } from "date-fns";
-import { id, tr } from "date-fns/locale";
+import { id, th, tr } from "date-fns/locale";
 import ToDoList from "./toDoList";
 
 function Interface() {
+
 
     // toggle light/dark theme on checkbox click
     const checkbox = document.getElementById('darkmode-toggle');
@@ -81,10 +82,9 @@ function Interface() {
 
     // display text field on add task click
 
-
     const addProjectBtn = document.querySelector('.add-project');
     const addCancelProject = document.querySelector('.add-or-cancel-buttons');
-    const projectNameInput = document.getElementById('add-project-popup');
+    let projectNameInput = document.getElementById('add-project-popup');
 
     addProjectBtn.addEventListener('click', () => {
         projectNameInput.style.display = 'block';
@@ -107,10 +107,10 @@ function Interface() {
     }
 
 
-    let myProjectsList = [];
-        myProjectsList = localStorage.getItem('listOfProjects');
-        myProjectsList = JSON.parse(myProjectsList || JSON.stringify(defaultProjects));
-
+    let defaultProjects = [];
+    let myProjectsList = localStorage.getItem('listOfProjects');
+    myProjectsList = JSON.parse(myProjectsList || JSON.stringify(defaultProjects));
+    // myProjectsList = [];
 
     // create project on add project click, display the name of the project in the right panel
     const taskList = document.querySelector('.task-list');
@@ -124,7 +124,7 @@ function Interface() {
     }
 
 
-    const addProjectItem = (title) =>{
+    const addProjectItem = (title) => {
 
         const newProject = CreateProject(title);
         myProjectsList.push(newProject);
@@ -135,11 +135,6 @@ function Interface() {
 
     }
 
-    const generateProjects = (project) => {
-        myProjectsList.forEach(project => displayProject(project))
-    }
-
-
     const CreateProject = (name) => {
         let tasksList = [];
         return {
@@ -149,30 +144,37 @@ function Interface() {
     }
 
 
-    function displayProject(data) {
+    let projectName
 
-        const projectsList = document.querySelector('.projects-list');
+    function displayProject(projectTitle, removeBtn) {
 
-        const removeProjectBtn = document.createElement('i');
+        let projectsList = document.querySelector('.projects-list');
+
+        let removeProjectBtn = document.createElement('i');
         removeProjectBtn.classList.add('fa-solid');
         removeProjectBtn.classList.add('fa-xmark');
 
+        removeProjectBtn.textContent = removeBtn
+
         projectsList.style.display = 'flex';
 
-        const project = document.createElement('div');
+        let project = document.createElement('div');
         project.classList.add('project');
 
-        const projectName = document.createElement('h3');
+        projectName = document.createElement('h3');
+
+        projectName.classList.add('title')
+
+        projectName.text = projectTitle;
 
         project.innerHTML += `<i class="fa-solid fa-check-double"></i>`
 
-        if (projectNameInput.value == '') {
-            alert('Projects must have a name');
-            return
-        }
-        else {
-            projectName.textContent = projectNameInput.value;
-        }
+        // if (projectNameInput.value == '') {
+        //     alert('Projects must have a name');
+        //     return
+        // }
+
+        projectName.textContent = projectNameInput.value;
 
         project.appendChild(projectName);
 
@@ -192,7 +194,6 @@ function Interface() {
 
         })
 
-
         project.addEventListener('click', (e) => {
             rightPanelTask.textContent = e.currentTarget.textContent;
             addTask.style.display = 'flex'
@@ -200,14 +201,11 @@ function Interface() {
             taskList.style.display = 'flex';
         })
 
-        addProjectItem(projectName.textContent)        
+        addProjectItem(projectName.textContent);
 
     }
 
-
-    createProjectBtn.addEventListener('click', displayProject);
-
-
+    createProjectBtn.addEventListener('click', displayProject)
 
     // display text field on add task click
     const addTaskPopup = document.getElementById('add-task-popup');
@@ -232,12 +230,12 @@ function Interface() {
     // create task and display it in the task list after clicking the add button
     const addTaskButton = document.querySelector('.add-task-button');
     const tasks = document.querySelector('.tasks');
+    const listOfTasks = document.querySelector('ul');
+
+    function displayTask(){
 
 
-    addTaskButton.addEventListener('click', () => {
-
-
-        const currentTask = document.createElement('div');
+        const currentTask = document.createElement('li');
 
         const leftSide = document.createElement('div');
 
@@ -278,7 +276,10 @@ function Interface() {
 
         tasks.style.display = 'flex';
 
-        tasks.appendChild(currentTask);
+        listOfTasks.style.display = 'flex';
+        listOfTasks.style.flexDirection = 'column';
+
+        listOfTasks.appendChild(currentTask);
 
 
         taskCheck.addEventListener('click', (e) => {
@@ -289,7 +290,7 @@ function Interface() {
         })
 
         removeTaskBtn.addEventListener('click', () => {
-            tasks.removeChild(currentTask);
+            listOfTasks.removeChild(currentTask);
         })
 
         const setDate = document.createElement('div');
@@ -350,8 +351,13 @@ function Interface() {
         })
 
 
-    })
+    }
+    
+    addTaskButton.addEventListener('click', displayTask);
 
 }
 
-export default Interface;
+
+
+
+export default Interface

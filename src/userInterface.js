@@ -55,9 +55,12 @@ function Interface() {
     const tomorrow = document.querySelector('.tomorrow');
     const nextWeek = document.querySelector('.this-week');
 
+    const taskList = document.querySelector('.task-list');
+
     inbox.addEventListener('click', () => {
         rightPanelTask.textContent = inbox.textContent
         addTask.style.display = 'flex';
+        taskList.style.display = 'flex';
         task.style.display = 'flex'
     })
 
@@ -79,133 +82,6 @@ function Interface() {
         task.style.display = 'none'
     })
 
-
-    // display text field on add task click
-
-    const addProjectBtn = document.querySelector('.add-project');
-    const addCancelProject = document.querySelector('.add-or-cancel-buttons');
-    let projectNameInput = document.getElementById('add-project-popup');
-
-    addProjectBtn.addEventListener('click', () => {
-        projectNameInput.style.display = 'block';
-        projectNameInput.value = '';
-        addCancelProject.style.display = 'flex';
-    })
-
-    const cancelProjectBtn = document.querySelector('.cancel-project-button');
-    cancelProjectBtn.addEventListener('click', () => {
-        projectNameInput.style.display = 'none';
-        addCancelProject.style.display = 'none';
-
-    })
-
-    // clear the value inserted in the add project text field
-    function clearForm() {
-        projectNameInput.value = '';
-        projectNameInput.style.display = 'none';
-        addCancelProject.style.display = 'none';
-    }
-
-
-    let defaultProjects = [];
-    let myProjectsList = localStorage.getItem('listOfProjects');
-    myProjectsList = JSON.parse(myProjectsList || JSON.stringify(defaultProjects));
-    // myProjectsList = [];
-
-    // create project on add project click, display the name of the project in the right panel
-    const taskList = document.querySelector('.task-list');
-
-    const createProjectBtn = document.querySelector('.add-project-button');
-
-
-    function saveToLocalStorage() {
-        localStorage.setItem("listOfProjects", JSON.stringify(myProjectsList));
-        localStorage.setItem("currentId", (id).toString());
-    }
-
-
-    const addProjectItem = (title) => {
-
-        const newProject = CreateProject(title);
-        myProjectsList.push(newProject);
-        saveToLocalStorage()
-
-        const id = myProjectsList.indexOf(newProject);
-        console.log(myProjectsList)
-
-    }
-
-    const CreateProject = (name) => {
-        let tasksList = [];
-        return {
-            tasksList,
-            name
-        }
-    }
-
-
-    let projectName
-
-    function displayProject(projectTitle, removeBtn) {
-
-        let projectsList = document.querySelector('.projects-list');
-
-        let removeProjectBtn = document.createElement('i');
-        removeProjectBtn.classList.add('fa-solid');
-        removeProjectBtn.classList.add('fa-xmark');
-
-        removeProjectBtn.textContent = removeBtn
-
-        projectsList.style.display = 'flex';
-
-        let project = document.createElement('div');
-        project.classList.add('project');
-
-        projectName = document.createElement('h3');
-
-        projectName.classList.add('title')
-
-        projectName.text = projectTitle;
-
-        project.innerHTML += `<i class="fa-solid fa-check-double"></i>`
-
-        // if (projectNameInput.value == '') {
-        //     alert('Projects must have a name');
-        //     return
-        // }
-
-        projectName.textContent = projectNameInput.value;
-
-        project.appendChild(projectName);
-
-        project.appendChild(removeProjectBtn);
-
-        projectsList.appendChild(project);
-
-        clearForm();
-
-        removeProjectBtn.addEventListener('click', (e) => {
-            projectsList.removeChild(e.currentTarget.parentNode);
-            project.textContent = '';
-
-            let removeThisProject = myProjectsList.findIndex((project) => this.project);
-            myProjectsList.slice(removeThisProject, 1);
-            saveToLocalStorage()
-
-        })
-
-        project.addEventListener('click', (e) => {
-            rightPanelTask.textContent = e.currentTarget.textContent;
-            addTask.style.display = 'flex'
-            addTaskPopup.value = ''
-            taskList.style.display = 'flex';
-        })
-
-        addProjectItem(projectName.textContent);
-
-    }
-
-    createProjectBtn.addEventListener('click', displayProject)
 
     // display text field on add task click
     const addTaskPopup = document.getElementById('add-task-popup');
@@ -352,8 +228,18 @@ function Interface() {
 
 
     }
+
+    function hideTaskForm(){
+        addTask.style.display = 'flex'
+        addTaskPopup.style.display = 'none'
+        addTaskPopup.value = ''
+        addCancelTaskButtons.style.display = 'none'
+        taskList.style.display = 'flex'
+        return
+    }
     
     addTaskButton.addEventListener('click', displayTask);
+    addTaskButton.addEventListener('click', hideTaskForm);
 
 }
 

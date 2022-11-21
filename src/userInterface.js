@@ -1,7 +1,3 @@
-import { format, parse, parseISO, set } from "date-fns";
-import { id, th, tr } from "date-fns/locale";
-import ToDoList from "./toDoList";
-
 function Interface() {
 
 
@@ -44,11 +40,37 @@ function Interface() {
     })
 
 
-    const rightPanelTask = document.querySelector('.current-task');
-
     const addTask = document.querySelector('.add-task');
 
     const task = document.createElement('div');
+
+    const rightPanelTask = document.querySelector('.current-task');
+
+    // display text field on add task click
+    const addTaskPopup = document.getElementById('add-task-popup');
+    const addCancelTaskButtons = document.querySelector('.add-or-cancel-task-buttons');
+
+    addTask.addEventListener('click', () => {
+        addTaskPopup.style.display = 'block'
+        addTaskPopup.value = ''
+        addTask.style.display = 'none'
+        addCancelTaskButtons.style.display = 'flex';
+    })
+
+    const cancelTaskButton = document.querySelector('.cancel-task-button');
+
+    cancelTaskButton.addEventListener('click', () => {
+        addTaskPopup.style.display = 'none';
+        addCancelTaskButtons.style.display = 'none';
+        addTask.style.display = 'flex'
+    })
+
+
+    // create task and display it in the task list after clicking the add button
+    const addTaskButton = document.querySelector('.add-task-button');
+    const tasks = document.querySelector('.tasks');
+    const listOfTasks = document.querySelector('ul');
+
 
     const inbox = document.querySelector('.inbox');
     const today = document.querySelector('.today');
@@ -82,31 +104,6 @@ function Interface() {
         task.style.display = 'none'
     })
 
-
-    // display text field on add task click
-    const addTaskPopup = document.getElementById('add-task-popup');
-    const addCancelTaskButtons = document.querySelector('.add-or-cancel-task-buttons');
-
-    addTask.addEventListener('click', () => {
-        addTaskPopup.style.display = 'block'
-        addTaskPopup.value = ''
-        addTask.style.display = 'none'
-        addCancelTaskButtons.style.display = 'flex';
-    })
-
-    const cancelTaskButton = document.querySelector('.cancel-task-button');
-
-    cancelTaskButton.addEventListener('click', () => {
-        addTaskPopup.style.display = 'none';
-        addCancelTaskButtons.style.display = 'none';
-        addTask.style.display = 'flex'
-    })
-
-
-    // create task and display it in the task list after clicking the add button
-    const addTaskButton = document.querySelector('.add-task-button');
-    const tasks = document.querySelector('.tasks');
-    const listOfTasks = document.querySelector('ul');
 
     function displayTask(){
 
@@ -225,8 +222,7 @@ function Interface() {
             })
 
         })
-
-
+        
     }
 
     function hideTaskForm(){
@@ -235,11 +231,12 @@ function Interface() {
         addTaskPopup.value = ''
         addCancelTaskButtons.style.display = 'none'
         taskList.style.display = 'flex'
-        return
     }
     
     addTaskButton.addEventListener('click', displayTask);
     addTaskButton.addEventListener('click', hideTaskForm);
+
+
 
 }
 

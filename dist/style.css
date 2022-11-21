@@ -16,6 +16,11 @@ body {
     padding: 0;
 }
 
+ul{
+    padding: 0;
+    margin: 0;
+}
+
 body.dark{
     --navColor: #202025;
     --btmBorder: #8333e9;
@@ -486,6 +491,33 @@ body.dark{
         width: 35%;
     }
 
+    .task-list{
+        width: 95%;
+        align-items: center;
+    }
+
+    .cancel-task-button,
+    .add-task-button{
+        padding: 1rem 3rem;
+    }
+
+    
+    .tasks{
+        width: 95%;
+    }
+
+    .task{
+        width: 80%;
+    }
+
+    .add-task{
+        width: 100%;
+    }
+
+    .add-task-popup{
+        width: 80%;
+    }
+
 }
 
 
@@ -493,7 +525,6 @@ body.dark{
 
     .content{
         width: 100%;
-        height: 100%;
     }
 
     .navbar{
@@ -650,6 +681,7 @@ body.dark{
 
     .task-list{
         width: 95%;
+        align-items: center;
     }
 
     .right-panel{
@@ -657,7 +689,7 @@ body.dark{
         height: 100vh;
         display: flex;
         height: 100%;
-        align-items: flex-start;
+        align-items: center;
         background-color: #F7F8F3;
     }
 
@@ -685,20 +717,23 @@ body.dark{
     }
 
     .tasks{
-        width: 95%;
+        width: 90%;
+        padding-bottom: 10rem;
     }
 
     .task{
-        width: 95%;
+        width: 90%;
     }
 
     .set-date{
         height: 100px;
         font-size: 0.8rem;
+        position: relative;
     }
 
     .current-task{
-        width: 85%;
+        width: 80%;
+        padding: 1rem;
     }
 
 }

@@ -105,8 +105,36 @@ function Interface() {
     })
 
 
-    function displayTask(){
+        let defaultTaskList = [];
+        let myTaskList = localStorage.getItem("listOfTasks");
+        myTaskList = JSON.parse((myTaskList) || JSON.stringify(defaultTaskList));
 
+    function saveToLocalStorage() {
+
+        localStorage.setItem("listOfTasks", JSON.stringify(myTaskList));
+
+    }
+
+    function AddTaskItem(title){
+        return{
+            title
+        }
+    }
+
+    function readTaskInput(){
+        let taskTitle = document.getElementById('add-task-popup').value;
+
+        const newTask = AddTaskItem(taskTitle)
+        myTaskList.push(newTask)
+
+
+        saveToLocalStorage()
+        console.log(myTaskList);
+
+    }
+
+    
+    function displayTask(){
 
         const currentTask = document.createElement('li');
 
@@ -117,6 +145,7 @@ function Interface() {
         taskCheck.classList.add('fa-circle');
 
         const taskName = document.createElement('h3');
+        taskName.classList.add('.taskName');
         if (addTaskPopup.value == '') {
             alert('Tasks must have a name')
             return
@@ -124,6 +153,10 @@ function Interface() {
         else {
             taskName.textContent = addTaskPopup.value
         }
+
+        currentTask.addEventListener('click', () => {
+            rightPanelTask.textContent = taskName.textContent
+        })
 
         const rightSide = document.createElement('div');
 
@@ -154,7 +187,6 @@ function Interface() {
 
         listOfTasks.appendChild(currentTask);
 
-
         taskCheck.addEventListener('click', (e) => {
             e.currentTarget.parentNode.style.opacity = '0.6'
             taskDate.style.opacity = '0.6'
@@ -164,6 +196,7 @@ function Interface() {
 
         removeTaskBtn.addEventListener('click', () => {
             listOfTasks.removeChild(currentTask);
+            saveToLocalStorage()
         })
 
         const setDate = document.createElement('div');
@@ -184,6 +217,8 @@ function Interface() {
         setDate.appendChild(tomorrowDate);
         setDate.appendChild(nextWeekDate);
         setDate.appendChild(noDueDate);
+
+        readTaskInput(taskName.textContent);
 
         taskDate.addEventListener('click', (e) => {
 
@@ -222,7 +257,8 @@ function Interface() {
             })
 
         })
-        
+
+
     }
 
     function hideTaskForm(){
@@ -233,9 +269,8 @@ function Interface() {
         taskList.style.display = 'flex'
     }
     
-    addTaskButton.addEventListener('click', displayTask);
+    addTaskButton.addEventListener('click', displayTask)
     addTaskButton.addEventListener('click', hideTaskForm);
-
 
 
 }
